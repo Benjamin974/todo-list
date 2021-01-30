@@ -1,6 +1,6 @@
 
 
-## About Laravel
+## About Todo-List
 
 Ce projet avait pour but de m'initier à l'utilisation de graphql.
 
