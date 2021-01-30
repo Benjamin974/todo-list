@@ -1,0 +1,75 @@
+"A date string with format `Y-m-d`, e.g. `2011-05-23`."
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+
+type Query {
+    users: [User!]! @all
+    user(id: Int! @eq): User @find
+
+    todos(orderBy: _ @orderBy(columns: ["date_execution"])): [Todo!]! @all
+    todo(id: Int! @eq): Todo @find
+    todos_priorite(priorite_id: Int @where(operator: "=")): [Todo!]! @all
+
+    priorites: [Priorite!]! @all
+
+}
+
+input OrderByClause {
+  field: String!
+  order: SortOrder!
+}
+
+enum SortOrder {
+  ASC
+  DESC
+}
+
+type Mutation {
+    updateTodo(
+        id: ID!
+        titre: String! @rules(apply: ["required"])
+        description: String! @rules(apply: ["required"])
+        date_execution: String! @rules(apply: ["required"])
+        is_check: Boolean! @rules(apply: ["required"])
+        priorite_id: ID! @rules(apply: ["required"])): Todo! @update
+
+    createTodo(
+        titre: String! @rules(apply: ["required"])
+        description: String! @rules(apply: ["required"])
+        date_execution: String! @rules(apply: ["required"])
+        is_check: Boolean! @rules(apply: ["required"])
+        priorite_id: ID!): Todo! @create
+
+    updateTodoCheck(
+        id: ID!
+        is_check: Boolean! @rules(apply: ["required"])): Todo! @update
+}
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+
+type Todo {
+    id: ID!
+    titre: String!
+    description: String!
+    date_execution: String!
+    is_check: Boolean!
+    created_at: DateTime!
+    updated_at: DateTime!
+    priorite: Priorite!
+}
+
+type Priorite {
+    id: ID!
+    priorite: String!
+}
+
