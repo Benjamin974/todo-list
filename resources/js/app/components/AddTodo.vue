@@ -2,7 +2,7 @@
 	<div class="text-center">
 		<v-menu offset-y persistent :close-on-content-click="false">
 			<template v-slot:activator="{ on, attrs }">
-				<v-btn outlined depressed v-bind="attrs" v-on="on"
+				<v-btn color='#C3C3C3' depressed rounded v-bind="attrs" v-on="on"
 					>Ajouter une tache<v-icon class="ml-9" color="deep-purple lighten-1"
 						>mdi-plus</v-icon
 					></v-btn

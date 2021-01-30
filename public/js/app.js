@@ -21518,7 +21518,13 @@ var render = function() {
                     "v-btn",
                     _vm._g(
                       _vm._b(
-                        { attrs: { outlined: "", depressed: "" } },
+                        {
+                          attrs: {
+                            color: "#C3C3C3",
+                            depressed: "",
+                            rounded: ""
+                          }
+                        },
                         "v-btn",
                         attrs,
                         false
@@ -21754,7 +21760,12 @@ var render = function() {
               _c(
                 "v-btn",
                 _vm._g(
-                  _vm._b({ attrs: { icon: "" } }, "v-btn", attrs, false),
+                  _vm._b(
+                    { attrs: { color: "deep-purple lighten-1", icon: "" } },
+                    "v-btn",
+                    attrs,
+                    false
+                  ),
                   on
                 ),
                 [_c("v-icon", [_vm._v("mdi-clipboard-text")])],
@@ -21813,15 +21824,33 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("v-card-text", [
-            _c("div", { staticClass: "text-h2 pa-12" }, [
+            _c(
+              "div",
+              { staticClass: "text-h2 py-7 px-12 hidden-sm-and-down" },
+              [_vm._v(_vm._s(_vm.todo.description))]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-h4 py-7 px-7 hidden-md-and-up" }, [
               _vm._v(_vm._s(_vm.todo.description))
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "text-h4 pa-12" }, [
+            _c(
+              "div",
+              { staticClass: "text-h4 py-7 px-12 hidden-sm-and-down" },
+              [_vm._v("Priorité : " + _vm._s(_vm.todo.priorite.priorite))]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-h6 py-7 px-12 hidden-md-and-up" }, [
               _vm._v("Priorité : " + _vm._s(_vm.todo.priorite.priorite))
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "text-h4 pa-12" }, [
+            _c(
+              "div",
+              { staticClass: "text-h4 py-7 px-12 hidden-sm-and-down" },
+              [_vm._v("Deadline : " + _vm._s(_vm.todo.date_execution))]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-h6 py-7 px-12 hidden-md-and-up" }, [
               _vm._v("Deadline : " + _vm._s(_vm.todo.date_execution))
             ]),
             _vm._v(" "),
@@ -21829,7 +21858,18 @@ var render = function() {
               ? _c(
                   "div",
                   {
-                    staticClass: "text-h4 pa-12",
+                    staticClass: "text-h4 pa-7 hidden-sm-and-down",
+                    staticStyle: { color: "red" }
+                  },
+                  [_vm._v("Pas encore effectué")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.todo.is_check == false
+              ? _c(
+                  "div",
+                  {
+                    staticClass: "text-h6 pa-7 hidden-md-and-up",
                     staticStyle: { color: "red" }
                   },
                   [_vm._v("Pas encore effectué")]
@@ -22223,29 +22263,25 @@ var render = function() {
             _c(
               "h1",
               {
-                staticClass: "display-3",
+                staticClass: "display-3 hidden-sm-and-down",
+                staticStyle: {
+                  "text-shadow": "1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue"
+                }
+              },
+              [_vm._v("\n\t\t\t\tTODO-LIST\n\t\t\t")]
+            ),
+            _vm._v(" "),
+            _c(
+              "h1",
+              {
+                staticClass: "display-1 hidden-md-and-up",
                 staticStyle: {
                   "text-shadow": "1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue"
                 }
               },
               [_vm._v("\n\t\t\t\tTODO-LIST\n\t\t\t")]
             )
-          ]),
-          _vm._v(" "),
-          _c(
-            "v-col",
-            { staticClass: "d-flex justify-end" },
-            [
-              _c("addTodo", {
-                on: {
-                  createTodo: function($event) {
-                    return _vm.add($event)
-                  }
-                }
-              })
-            ],
-            1
-          )
+          ])
         ],
         1
       ),
@@ -22255,6 +22291,7 @@ var render = function() {
         [
           _c(
             "v-col",
+            { attrs: { md: "3" } },
             [
               _c("v-select", {
                 staticClass: "mt-10",
@@ -22283,150 +22320,153 @@ var render = function() {
               })
             ],
             1
-          ),
-          _vm._v(" "),
-          _c("v-col"),
-          _vm._v(" "),
-          _c("v-col")
+          )
         ],
         1
       ),
       _vm._v(" "),
       _c(
-        "v-container",
-        { staticClass: "mb-12" },
+        "v-row",
+        { staticClass: "ma-0 my-5" },
+        [
+          _c("addTodo", {
+            on: {
+              createTodo: function($event) {
+                return _vm.add($event)
+              }
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-card",
+        {
+          staticClass: "pa-3 mt-10",
+          attrs: { width: "600", elevation: "0", shaped: "", outlined: "" }
+        },
         [
           _c(
-            "v-card",
-            {
-              staticClass: "pa-3",
-              attrs: { width: "600", elevation: "0", shaped: "", outlined: "" }
-            },
+            "v-row",
             [
+              _c("v-col", { attrs: { cols: "6", sm: "6", md: "6" } }, [
+                _c("div", { staticClass: "caption grey--text" }, [
+                  _vm._v("TACHES")
+                ])
+              ]),
+              _vm._v(" "),
               _c(
-                "v-row",
+                "v-col",
+                { attrs: { cols: "6", sm: "6", md: "6" } },
                 [
-                  _c("v-col", { attrs: { cols: "6", sm: "6", md: "6" } }, [
-                    _c("div", { staticClass: "caption grey--text" }, [
-                      _vm._v("LISTE")
-                    ])
-                  ]),
-                  _vm._v(" "),
                   _c(
-                    "v-col",
-                    { attrs: { cols: "6", sm: "6", md: "6" } },
+                    "v-row",
+                    {
+                      staticClass: "ma-0",
+                      attrs: { align: "center", justify: "end" }
+                    },
                     [
-                      _c(
-                        "v-row",
-                        {
-                          staticClass: "ma-0",
-                          attrs: { align: "center", justify: "end" }
-                        },
-                        [
-                          _c("div", { staticClass: "caption grey--text" }, [
-                            _vm._v("ACTIONS")
-                          ])
-                        ]
-                      )
-                    ],
-                    1
+                      _c("div", { staticClass: "caption grey--text" }, [
+                        _vm._v("ACTIONS")
+                      ])
+                    ]
                   )
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _c("v-divider", { staticClass: "my-5" }),
-              _vm._v(" "),
-              _vm._l(_vm.todos, function(todo, key) {
-                return _c(
-                  "v-row",
-                  { key: key, attrs: { align: "center", justify: "start" } },
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-divider", { staticClass: "my-5" }),
+          _vm._v(" "),
+          _vm._l(_vm.todos, function(todo, key) {
+            return _c(
+              "v-row",
+              { key: key, attrs: { align: "center", justify: "start" } },
+              [
+                _c(
+                  "v-col",
+                  {
+                    staticClass: "mb-2",
+                    attrs: { cols: "6", sm: "6", md: "6" }
+                  },
+                  [
+                    todo.is_check == true
+                      ? _c(
+                          "div",
+                          {
+                            staticStyle: { "text-decoration": "line-through" }
+                          },
+                          [
+                            _vm._v(
+                              "\n\t\t\t\t\t\t" +
+                                _vm._s(todo.titre) +
+                                "\n\t\t\t\t\t"
+                            )
+                          ]
+                        )
+                      : _c("div", [_vm._v(_vm._s(todo.titre))])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "v-col",
+                  { attrs: { cols: "6", sm: "6", md: "6" } },
                   [
                     _c(
-                      "v-col",
-                      {
-                        staticClass: "mb-2",
-                        attrs: { cols: "6", sm: "6", md: "6" }
-                      },
+                      "v-row",
+                      { attrs: { align: "center", justify: "end" } },
                       [
-                        todo.is_check == true
-                          ? _c(
-                              "div",
-                              {
-                                staticStyle: {
-                                  "text-decoration": "line-through"
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n\t\t\t\t\t\t" +
-                                    _vm._s(todo.titre) +
-                                    "\n\t\t\t\t\t"
-                                )
-                              ]
-                            )
-                          : _c("div", [_vm._v(_vm._s(todo.titre))])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "v-col",
-                      { attrs: { cols: "6", sm: "6", md: "6" } },
-                      [
-                        _c(
-                          "v-row",
-                          { attrs: { align: "center", justify: "end" } },
-                          [
-                            _c("detailsTodo", {
-                              attrs: { todo: todo },
-                              on: {
-                                update: function($event) {
-                                  return _vm.update($event)
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("v-checkbox", {
-                              staticClass: "ml-3",
-                              on: {
-                                change: function($event) {
-                                  return _vm.isCheck(todo.is_check, todo)
-                                }
-                              },
-                              model: {
-                                value: todo.is_check,
-                                callback: function($$v) {
-                                  _vm.$set(todo, "is_check", $$v)
-                                },
-                                expression: "todo.is_check"
-                              }
-                            })
-                          ],
-                          1
-                        )
+                        _c("detailsTodo", {
+                          attrs: { todo: todo },
+                          on: {
+                            update: function($event) {
+                              return _vm.update($event)
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("v-checkbox", {
+                          staticClass: "ml-3",
+                          attrs: { color: "deep-purple lighten-1" },
+                          on: {
+                            change: function($event) {
+                              return _vm.isCheck(todo.is_check, todo)
+                            }
+                          },
+                          model: {
+                            value: todo.is_check,
+                            callback: function($$v) {
+                              _vm.$set(todo, "is_check", $$v)
+                            },
+                            expression: "todo.is_check"
+                          }
+                        })
                       ],
                       1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "caption grey--text",
-                        staticStyle: { display: "none" }
-                      },
-                      [_vm._v("_")]
-                    ),
-                    _vm._v(" "),
-                    _c("v-divider", { staticClass: "ma-4" })
+                    )
                   ],
                   1
-                )
-              })
-            ],
-            2
-          )
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "caption grey--text",
+                    staticStyle: { display: "none" }
+                  },
+                  [_vm._v("_")]
+                ),
+                _vm._v(" "),
+                _c("v-divider", { staticClass: "ma-4" })
+              ],
+              1
+            )
+          })
         ],
-        1
+        2
       )
     ],
     1

@@ -1,29 +1,25 @@
 <template>
-	<div
-		class="home"
-		style="
-			padding: 50px;
-			border-radius: 10px;
-			height: 100%;
-		"
-	>
+	<div class="home" style="padding: 50px; border-radius: 10px; height: 100%">
 		<v-row>
 			<v-col>
 				<h1
-					class="display-3"
+					class="display-3 hidden-sm-and-down"
+					style="text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue"
+				>
+					TODO-LIST
+				</h1>
+				<h1
+					class="display-1 hidden-md-and-up"
 					style="text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue"
 				>
 					TODO-LIST
 				</h1>
 			</v-col>
-			<v-col class="d-flex justify-end">
-				<addTodo @createTodo="add($event)" />
-			</v-col>
 		</v-row>
 		<v-row>
-			<v-col>
+			<v-col md="3">
 				<v-select
-					color='grey'
+					color="grey"
 					class="mt-10"
 					rounded
 					filled
@@ -36,14 +32,14 @@
 					@change="getPriorite()"
 				></v-select>
 			</v-col>
-			<v-col></v-col>
-			<v-col></v-col>
 		</v-row>
-		<v-container class="mb-12">
-			<v-card class="pa-3" width="600" elevation="0" shaped outlined>
+		<v-row class="ma-0 my-5">
+				<addTodo @createTodo="add($event)" />
+		</v-row>
+			<v-card class="pa-3 mt-10" width="600" elevation="0" shaped outlined>
 				<v-row>
 					<v-col cols="6" sm="6" md="6">
-						<div class="caption grey--text">LISTE</div>
+						<div class="caption grey--text">TACHES</div>
 					</v-col>
 					<v-col cols="6" sm="6" md="6">
 						<v-row class="ma-0" align="center" justify="end">
@@ -73,6 +69,7 @@
 
 							<v-checkbox
 								class="ml-3"
+								color="deep-purple lighten-1"
 								v-model="todo.is_check"
 								@change="isCheck(todo.is_check, todo)"
 							></v-checkbox>
@@ -82,7 +79,6 @@
 					<v-divider class="ma-4"> </v-divider>
 				</v-row>
 			</v-card>
-		</v-container>
 	</div>
 </template>
 
